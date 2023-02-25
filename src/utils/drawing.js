@@ -61,8 +61,8 @@ export const polarToCartesian = ([r, theta]) => [r * Math.cos(theta), r * Math.s
 export const rotatePt = (p0, p1, theta) => {
   const cos = Math.cos(theta)
   const sin = Math.sin(theta)
-  const x = cos * (p1[0] - p0[0]) + sin * (p1[1] - p0[0]) + p0[0]
-  const y = cos * (p1[1] - p0[1]) - sin * (p1[0] - p0[1]) + p0[1]
+  const x = cos * (p1[0] - p0[0]) - sin * (p1[1] - p0[1]) + p0[0]
+  const y = cos * (p1[1] - p0[1]) + sin * (p1[0] - p0[0]) + p0[1]
   return [x, y]
 }
 
@@ -149,6 +149,8 @@ export const generateGrid = (nColumns, nRows) => {
   coordinates.cellSizeY = cellSizeY
   return [coordinates, [cellSizeX, cellSizeY]]
 }
+
+export const midPoint = (p0, p1) => [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2]
 
 /**
  * Subdivides any svg path into points with the segment length
