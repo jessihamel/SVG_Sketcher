@@ -51,6 +51,8 @@ export const cartesianToPolar = ([x, y]) => [Math.sqrt(x ** 2 + y ** 2), Math.at
  */
 export const polarToCartesian = ([r, theta]) => [r * Math.cos(theta), r * Math.sin(theta)]
 
+export const angleBetweenPoints = (p1, p2) => Math.atan2(p2[1] - p1[1], p2[0] - p1[0])
+
 /**
  * Returns point p1 rotated around point p0
  * @param {[number, number]} p0 anchor point
@@ -90,6 +92,28 @@ export const pointOnCircle = (p, r, theta) => {
 }
 
 /**
+ * Returns array of coordinates that roughly describe an of the given radius and centroid.
+ * Useful for creating arcs that are path elements.
+ * @param {number} r
+ * @param {[number, number]} centroid
+ * @param {number} startAngle
+ * @param {number} endAngle
+ * @param {number} [segementLength]
+ * @returns {Array<[number, number]>}
+ */
+export const generateArcCoords = (r, centroid, startAngle, endAngle, segmentLength = 5) => {
+  const d = r * (endAngle - startAngle)
+  const circleCoords = []
+  const nSegments = Math.max(Math.ceil(d / segmentLength), 4)
+  for (let i = 0; i <= nSegments; i++) {
+    const theta = startAngle + (i / nSegments) * (d / r)
+    const [x, y] = polarToCartesian([r, theta])
+    circleCoords.push([x + centroid[0], y + centroid[1]])
+  }
+  return circleCoords
+}
+
+/**
  * Returns array of coordinates that roughly describe a circle of the given radius and centroid.
  * Useful for creating circles that are path elements.
  * @param {number} r
@@ -103,7 +127,7 @@ export const generateCircleCoords = (r, centroid, segementLength = 5) => {
   const nSegments = Math.max(Math.ceil(d / segementLength), 4)
   for (let i = 0; i <= nSegments; i++) {
     const theta = (i / nSegments) * 2 * Math.PI
-    const [x, y] = polarToCartesian(r, theta)
+    const [x, y] = polarToCartesian([r, theta])
     circleCoords.push([x + centroid[0], y + centroid[1]])
   }
   return circleCoords
@@ -150,6 +174,12 @@ export const generateGrid = (nColumns, nRows) => {
   return [coordinates, [cellSizeX, cellSizeY]]
 }
 
+/**
+ * Returns the midpoint of two points
+ * @param {[number, number]} p0
+ * @param {[number, number]} p1
+ * @returns {[number, number]}
+ */
 export const midPoint = (p0, p1) => [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2]
 
 /**

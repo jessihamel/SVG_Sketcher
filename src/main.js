@@ -71,9 +71,12 @@ function draw() {
 
   // If you'd like to explore more, check out some of the examples in src/examples
   // Or uncomment the examples below.
+  // examples.rect()
+  // examples.circle()
+  // examples.path()
+  // examples.grid()
   // examples.sun()
   // examples.snowflake()
-  // examples.grid()
 }
 
 draw()
