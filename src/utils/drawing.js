@@ -69,7 +69,7 @@ export const rotatePt = (p0, p1, theta) => {
 }
 
 /**
- * Returns point p1 rotated around point p0
+ * Returns coordinates for an array of coordinates rotated around point p0
  * @param {[number, number]} p0 anchor point
  * @param {Array<[number, number]>} coordinates collection of points to rotate
  * @param {[number, number]} theta angle
@@ -92,7 +92,7 @@ export const pointOnCircle = (p, r, theta) => {
 }
 
 /**
- * Returns array of coordinates that roughly describe an of the given radius and centroid.
+ * Returns array of coordinates that roughly describe a circle of the given radius and centroid.
  * Useful for creating arcs that are path elements.
  * @param {number} r
  * @param {[number, number]} centroid
