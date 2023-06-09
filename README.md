@@ -8,6 +8,8 @@ SVG Sketcher is a framework for developing generative SVGs with javascript. Its 
 - Built in [random number seeding](https://www.npmjs.com/package/seedrandom) to make plots optionally reproducible
 - Hot Module Replacement (HMR) via [Parcel](https://parceljs.org/) so that changes to code are reflected in the browser
 
+![screenshot](https://github.com/jessihamel/SVG_Sketcher/blob/main/SVG_Sketcher.png?raw=true)
+
 ## Installation
 
 SVG Sketcher uses [Parcel](https://parceljs.org/) for HMR and to load dependencies. To start the server, clone the repo and run
@@ -29,8 +31,8 @@ npx parcel src/index.html
 Sketch size is set in `src/constants.js`
 
 ```javascript
-export const SKETCH_HEIGHT = 600
-export const SKETCH_WIDTH = 600
+export const SKETCH_HEIGHT = 600;
+export const SKETCH_WIDTH = 600;
 ```
 
 Update these values to change the output of your sketch
@@ -78,7 +80,7 @@ Generative art/design often relies on random numbers to create designs, making i
 The initial seed is set in `src/seed.js` and is random by default, meaning any code calling it's export random() function will be **non-deterministic** by default. The initial seed is logged to the console, set as the id of the SVG and used as the name of the export. To reproduce the work (assuming no other code has changed), update the SEED value in `src/seed.js`
 
 ```javascript
-const SEED = Math.random() // Replace with your desired value
+const SEED = Math.random(); // Replace with your desired value
 ```
 
 Any calls to random() in the codebase will now be **deterministic**.
